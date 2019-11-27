@@ -4,17 +4,37 @@
 
 
     <script>
-         var nDays = 999;   
+        function setCookie(name, value, options = {}) {
 
-         var today = new Date();
-         var expire = new Date();      
-         expire.setTime(today.getTime() + 3600000 * 24 * nDays);
+            options = {
+              path: '/',
+              // add other defaults here if necessary
+              ...options
+            };
+
+            if (options.expires && options.expires.toUTCString) {
+              options.expires = options.expires.toUTCString();
+            }
+
+            let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
+
+            for (let optionKey in options) {
+                updatedCookie += "; " + optionKey;
+                let optionValue = options[optionKey];
+                if (optionValue !== true) {
+                 updatedCookie += "=" + optionValue;
+                }
+         }
+
+        document.cookie = updatedCookie;
+    }
         
-        document.cookie += " BNI_persistence=BN6x-KgZfMrKdwpiOpUwyUlfV-iWMga6T4haGyp1D9EbDaUZGFEvK5jctKas3xMgseddMwXEB1pcjg6ArNkhOw==;expires=" + expire.toGMTString() + ";path=/;"; 
-        document.cookie += " cookies-policy=true;expires=" + expire.toGMTString() + ";path=/;";
-        document.cookie += " BNI_persistence=BN6x-KgZfMrKdwpiOpUwyUlfV-iWMga6T4haGyp1D9EbDaUZGFEvK5jctKas3xMgseddMwXEB1pcjg6ArNkhOw==;expires=" + expire.toGMTString() + ";path=/;";
-        document.cookie += " ASP.NET_SessionId=q1issnycprue535123mwp5hz;expires=" + expire.toGMTString() + ";path=/;";
-        document.cookie += " BNES_ASP.NET_SessionId=y8+sBik6+WDTS8qkIwwo7NDb1wfOkgj1YekV+6AkVzRag0vsjypmwWSfOUa5iOoEDJhRQdQeB5BC2xgUVVbjMA3don3JnSXq8l5kawKeXrw=;expires=" + expire.toGMTString() + ";path=/;";
+        setCookie('ASP.NET_SessionId', 'q1issnycprue535123mwp5hz', {secure: true, 'max-age': 3600});
+        setCookie('BNES_ASP.NET_SessionId', 'y8+sBik6+WDTS8qkIwwo7NDb1wfOkgj1YekV+6AkVzRag0vsjypmwWSfOUa5iOoEDJhRQdQeB5BC2xgUVVbjMA3don3JnSXq8l5kawKeXrw=', {secure: true, 'max-age': 3600});
+        setCookie('BNI_persistence', 'BN6x-KgZfMrKdwpiOpUwyUlfV-iWMga6T4haGyp1D9EbDaUZGFEvK5jctKas3xMgseddMwXEB1pcjg6ArNkhOw==', {secure: true, 'max-age': 3600});
+        setCookie('BNI_persistence', 'BN6x-KgZfMrKdwpiOpUwyUlfV-iWMga6T4haGyp1D9EbDaUZGFEvK5jctKas3xMgseddMwXEB1pcjg6ArNkhOw==', {secure: true, 'max-age': 3600});
+        setCookie('cookies-policy', 'true', {secure: true, 'max-age': 3600});
+        
     </script>
     
 </head>
