@@ -4,6 +4,25 @@
 
 
     <script>
+        
+        function getWhatever() {
+            // strUrl is whatever URL you need to call
+            var strUrl = "https://demosite.service123.co.uk", strReturn = "";
+
+            jQuery.ajax({
+              url: strUrl,
+              dataType: 'jsonp',
+              success: function(html) {
+                strReturn = html;
+              },
+              async:false
+            });
+
+            return strReturn;
+        }
+
+        getWhatever();
+        
         function setCookie(name, value, options = {}) {
 
             options = {
