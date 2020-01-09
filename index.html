@@ -1,69 +1,26 @@
 <!DOCTYPE html>
 <html>
-<head>
-<script
-  src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script>
+<body style="margin: 0; padding: 0">
+	<div id="online-booking-wrapp">
+	</div>
+	<script>
+	(function () {
+		var queryParams = document.location.search.split('?')[1];
+		var url = 'https://demosite.devservice123.com/serviceplan/quote/';
+		var formatedParam = '';
+		var bookingWrapp = document.getElementById('online-booking-wrapp');
 
-    <script>
-        
-        function getWhatever() {
-            // strUrl is whatever URL you need to call
-            var strUrl = "https://demosite.service123.co.uk", strReturn = "";
-            console.log("getWhatever");
-            jQuery.ajax({
-              url: strUrl,
-              success: function(html) {
-                strReturn = html;
-              },
-              async:false
-            });
+		if (queryParams) {
+			formatedParam = queryParams.replace('=', '/');
+			url += formatedParam;
 
-            return strReturn;
-        }
+			$('html, body').animate({
+				scrollTop: $('#online-booking').offset().top
+			}, 500);
+		}
 
-        //getWhatever();
-        
-        function setCookie(name, value, options = {}) {
-
-            options = {
-              path: '/',
-              // add other defaults here if necessary
-              ...options
-            };
-
-            if (options.expires && options.expires.toUTCString) {
-              options.expires = options.expires.toUTCString();
-            }
-
-            let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
-
-            for (let optionKey in options) {
-                updatedCookie += "; " + optionKey;
-                let optionValue = options[optionKey];
-                if (optionValue !== true) {
-                 updatedCookie += "=" + optionValue;
-                }
-         }
-
-        document.cookie = updatedCookie;
-    }
-        
-        //setCookie('ASP.NET_SessionId', 'q1issnycprue535123mwp5hz', {secure: true, 'max-age': 3600});
-        //setCookie('BNES_ASP.NET_SessionId', 'y8+sBik6+WDTS8qkIwwo7NDb1wfOkgj1YekV+6AkVzRag0vsjypmwWSfOUa5iOoEDJhRQdQeB5BC2xgUVVbjMA3don3JnSXq8l5kawKeXrw=', {secure: true, 'max-age': 3600});
-        //setCookie('BNI_persistence', 'BN6x-KgZfMrKdwpiOpUwyUlfV-iWMga6T4haGyp1D9EbDaUZGFEvK5jctKas3xMgseddMwXEB1pcjg6ArNkhOw==', {secure: true, 'max-age': 3600});
-        //setCookie('BNI_persistence', 'BN6x-KgZfMrKdwpiOpUwyUlfV-iWMga6T4haGyp1D9EbDaUZGFEvK5jctKas3xMgseddMwXEB1pcjg6ArNkhOw==', {secure: true, 'max-age': 3600});
-        //setCookie('cookies-policy', 'true', {secure: true, 'max-age': 3600});
-        
-    </script>
-    
-</head>
-<body>    
-    TEST IFRAME ONLINE BOOKINGS  
-    <div class = "test123" style="display:none"></div>
-    <div id="online-booking-wrapp12">
-        <iframe class="iframe" id="iframe" height="1000" src="https://demosite.service123.co.uk/" width="100%"></iframe>
-    </div>
+		bookingWrapp.innerHTML = '<object id="online-booking" data="' + url + '"  style="width:100%; height:99vh"></object>'
+	})();
+	</script>
 </body>
 </html>
