@@ -3,10 +3,7 @@
 	<head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	</head>
-<script
-  src="https://code.jquery.com/jquery-2.2.4.min.js"
-  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-  crossorigin="anonymous"></script>
+
 <body style="margin: 0; padding: 0">
 TEST LIVE IFRAME
 	<div id="online-booking-wrapp">	
@@ -22,9 +19,9 @@ TEST LIVE IFRAME
 			formatedParam = queryParams.replace('=', '/');
 			url += formatedParam;
 
-			$('html, body').animate({
-				scrollTop: $('#online-booking').offset().top
-			}, 500);
+			//$('html, body').animate({
+			//	scrollTop: $('#online-booking').offset().top
+			//}, 500);
 		}
 
 		//bookingWrapp.innerHTML = '<object id="online-booking" data="' + url + '"  style="width:100%; height:99vh"></object>'		
