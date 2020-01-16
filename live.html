@@ -8,13 +8,15 @@
 TEST LIVE IFRAME
 	<div id="online-booking-wrapp">	
 	</div>
+	<div id="online-booking-wrapp-object">	
+	</div>
 	<script>
 	(function () {
 		var queryParams = document.location.search.split('?')[1];
 		var url = 'https://demosite.service123.co.uk/serviceplan/quote/';
 		var formatedParam = '';
 		var bookingWrapp = document.getElementById('online-booking-wrapp');
-
+		var bookingWrappObject = document.getElementById('online-booking-wrapp-object');
 		if (queryParams) {
 			formatedParam = queryParams.replace('=', '/');
 			url += formatedParam;
@@ -24,7 +26,7 @@ TEST LIVE IFRAME
 			//}, 500);
 		}
 
-		//bookingWrapp.innerHTML = '<object id="online-booking" data="' + url + '"  style="width:100%; height:99vh"></object>'		
+		bookingWrappObject.innerHTML = '<object id="online-booking" data="' + url + '"  style="width:100%; height:99vh"></object>'		
 		bookingWrapp.innerHTML = '<iframe id="online-booking" src="' + url + '"  style="width:100%; height:99vh"></iframe>';	
 		
 	})();
