@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	</head>
+	
+<body style="margin: 0; padding: 0">
+TEST GLOBAL IFRAME
+	<div id="online-booking-wrapp">	
+	</div>
+	<script>
+	(function () {
+		var queryParams = document.location.search.split('?')[1];
+		var url = 'https://demosite.service123.co.uk/';
+		var formatedParam = '';
+		var bookingWrapp = document.getElementById('online-booking-wrapp');
+
+		if (queryParams) {
+			formatedParam = queryParams.replace('=', '/');
+			url += formatedParam;
+
+			//$('html, body').animate({
+			//	scrollTop: $('#online-booking').offset().top
+			//}, 500);
+		}
+
+		//bookingWrapp.innerHTML = '<object id="online-booking" data="' + url + '"  style="width:100%; height:99vh"></object>'		
+		bookingWrapp.innerHTML = '<iframe id="online-booking" src="' + url + '"  style="width:100%; height:99vh"></iframe>'	
+		
+	})();
+	</script>
+</body>
+</html>
