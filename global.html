@@ -1,38 +1,36 @@
 <!DOCTYPE html>
+
 <html>
-	<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-	</head>
-	
 <body style="margin: 0; padding: 0">
-TEST GLOBAL IFRAME
- <!DOCTYPE html>
-<html>
- 
-	<div id="online-booking-wrapp">	
-	</div>
+	IFRAME
 	<script>
+	 window.onmessage = function(e){
+    if (e.data.event_id === 'ob_confirmed' || e.data.event_id === 'ospq_dd') {     
+		var bookingWrapp = document.getElementById('online-booking-wrapp');
+		bookingWrapp.innerHTML = '<object id="online-booking" data="' + e.data.page + '"  style="width:100%; height:99vh"></object>'
+    }	 
+};
+	</script>
+	 
+	<div id="online-booking-wrapp">
+	</div>
+
+	<script>
+				
 	(function () {
 		var queryParams = document.location.search.split('?')[1];
-		var url = 'https://demosite.edynamix-global.com/serviceplan/quote';
+		var url = 'https://demosite.devservice123.com/serviceplan/quote';
 		var formatedParam = '';
 		var bookingWrapp = document.getElementById('online-booking-wrapp');
 
-		if (queryParams) {
+		if (queryParams && queryParams.indexOf('Amend')!=-1) {
 			formatedParam = queryParams.replace('=', '/');
-			url += formatedParam;
-
-			//$('html, body').animate({
-			//	scrollTop: $('#online-booking').offset().top
-			//}, 500);
+			url += formatedParam;			 
 		}
 
-		//bookingWrapp.innerHTML = '<object id="online-booking" data="' + url + '"  style="width:100%; height:99vh"></object>'		
-		bookingWrapp.innerHTML = '<iframe id="online-booking" src="' + url + '"  style="width:100%; height:99vh"></iframe>'
-		
+		bookingWrapp.innerHTML = '<object id="online-booking" data="' + url + '"  style="width:100%; height:99vh"></object>'
 	})();
+	  
 	</script>
- 
-</html>
 </body>
 </html>
