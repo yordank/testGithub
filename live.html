@@ -1,16 +1,15 @@
 <!DOCTYPE html>
+
 <html>
-	<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-	</head>
-
 <body style="margin: 0; padding: 0">
-TEST LIVE IFRAME
-	<div id="online-booking-wrapp">	
+	IFRAME WITHOUT THE IFRAME FIX
+ 
+	 
+	<div id="online-booking-wrapp">
 	</div>
-	
-	 <script>
 
+	<script>
+				
 	(function () {
 		var queryParams = document.location.search.split('?')[1];
 		var url = 'https://demosite.edynamix-global.com/serviceplan/quote';
@@ -24,6 +23,7 @@ TEST LIVE IFRAME
 
 		bookingWrapp.innerHTML = '<object id="online-booking" data="' + url + '"  style="width:100%; height:99vh"></object>'
 	})();
+	  
 	</script>
 </body>
 </html>
