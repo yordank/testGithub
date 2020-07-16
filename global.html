@@ -13,7 +13,7 @@
 	 window.onmessage = function(e){
             if (e.data.event_id === 'ob_confirmed' || e.data.event_id === 'ospq_dd' || e.data.event_id === 'ospq_confirmed') {     
 	       var bookingWrapp = document.getElementById('online-booking-wrapp');
-	       bookingWrapp.innerHTML = '<object id="online-booking" src="' + e.data.page + '"  style="width:100%; height:99vh"></object>'
+	       bookingWrapp.innerHTML = '<object id="online-booking" data="' + e.data.page + '"  style="width:100%; height:99vh"></object>'
             }	 
         };
 		
@@ -36,8 +36,8 @@
 			url += formatedParam;			 
 		}
 
-		//bookingWrapp.innerHTML = '<object id="online-booking" data="' + url + '"  style="width:100%; height:99vh"></object>'
-		bookingWrapp.innerHTML = '<iframe id="online-booking" src="' + url + '"  style="width:100%; height:99vh"></iframe>'
+		bookingWrapp.innerHTML = '<object id="online-booking" data="' + url + '"  style="width:100%; height:99vh"></object>'
+		//bookingWrapp.innerHTML = '<iframe id="online-booking" src="' + url + '"  style="width:100%; height:99vh"></iframe>'
 			})();
 	  
 	</script>
