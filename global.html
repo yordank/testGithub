@@ -17,7 +17,12 @@
 	       //var bookingWrapp = document.getElementById('online-booking-wrapp');
 	       //bookingWrapp.innerHTML = '<object id="online-booking" data="' + e.data.page + '"  style="width:100%; height:99vh"></object>'
             }	 
-		
+	    if (e.data.event_id === 'scroll_top_of_el' || e.data.event_id === 'scroll_bottom_of_el') { 			 
+				console.log("scroll_top_of_el");
+		        var bookingTop = document.getElementById("online-booking-wrapp").offsetTop;
+			document.getElementById("online-booking-wrapp").height = e.data.height;
+			window.scrollTo(0, bookingTop + e.data.position);
+            } 	
         };
 		
 	</script>
