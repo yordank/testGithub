@@ -24,25 +24,33 @@ Priding ourselves on our honesty, reliability and outstanding value for money, w
 	       //var bookingWrapp = document.getElementById('online-booking-wrapp');
 	       //bookingWrapp.innerHTML = '<object id="online-booking" data="' + e.data.page + '"  style="width:100%; height:99vh"></object>'
             }	 
-	    if (e.data.event_id === 'scroll_top_of_el' || e.data.event_id === 'scroll_bottom_of_el') { 			 
+			
+			if (e.data.event_id === 'scroll_top_of_el' || e.data.event_id === 'scroll_bottom_of_el') { 			 
 			console.log("scroll_top_of_el");
 		        var bookingTop = document.getElementById("online-booking-wrapp").offsetTop;
 			document.getElementById("online-booking-wrapp").height = e.data.height;
 			window.scrollTo(0, bookingTop + e.data.position);
             } 	
+			
+			if (e.data.event_id === 'set_height') { 
+				console.log("sеt_height");
+		        var bookingTop = document.getElementById("online-booking-wrapp").offsetTop;
+				document.getElementById("online-booking").height = e.data.height;				
+            } 
+			
         };
 		
 	</script>
 	 
 	<div id="online-booking-wrapp">
-	</div>
-	 
+	</div>	 
 
 	<script>
 				
 	(function () {
 		var queryParams = document.location.search.split('?')[1];
-		var url = 'https://demosite.edynamix-global.com/serviceplan/quote?iframe-v2=true';
+		var url = 'https://demosite.edynaix-global.com/serviceplan/quote?iframe-v2=true';
+		//var url = 'https://www.researchgarage.co.uk/service/';
 		var formatedParam = '';
 		var bookingWrapp = document.getElementById('online-booking-wrapp');
 
@@ -52,7 +60,7 @@ Priding ourselves on our honesty, reliability and outstanding value for money, w
 		}
 
 		//bookingWrapp.innerHTML = '<object id="online-booking" data="' + url + '"  style="width:100%; height:99vh"></object>'
-		bookingWrapp.innerHTML = '<iframe id="online-booking" src="' + url + '"  style="width:100%; height:99vh"></iframe>'
+		bookingWrapp.innerHTML = '<iframe frameborder="0" id="online-booking" src="' + url + '"  style="width:100%;"></iframe>'
 			})();
 	  
 	</script>
