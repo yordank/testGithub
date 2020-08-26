@@ -20,7 +20,9 @@ Priding ourselves on our honesty, reliability and outstanding value for money, w
 	</div>	 
 
 	<script>
-	
+		document.head.innerHTML += '<meta name = "viewport" content = "user-scalable=no, width=device-width">';
+		document.head.innerHTML += '<meta http-equiv="X-UA-Compatible" content="IE=9,10,11" />';
+		
 	window.onmessage = function(e){
             if (e.data.event_id === 'ob_confirmed' || e.data.event_id === 'ospq_dd' || e.data.event_id === 'ospq_confirmed') { 
 		   document.getElementById('online-booking').setAttribute("src", e.data.page);    
@@ -55,8 +57,7 @@ Priding ourselves on our honesty, reliability and outstanding value for money, w
 	})();
 		
 		//document.getElementById("online-booking").height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-		document.head.innerHTML += '<meta name = "viewport" content = "user-scalable=no, width=device-width">';
-		document.head.innerHTML += '<meta http-equiv="X-UA-Compatible" content="IE=9,10,11" />';
+	
 		
 	</script>
 	<div>
