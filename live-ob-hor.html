@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>	 
+	<div id="online-booking-wrapp">
+	</div>	 
+
+	<script>
+	document.head.innerHTML += '<meta name = "viewport" content = "user-scalable=no, width=device-width">';
+	document.head.innerHTML += '<meta http-equiv="X-UA-Compatible" content="IE=9,10,11" />';
+		
+	window.onmessage = function(e){
+        if (e.data.event_id === 'ob_confirmed' || e.data.event_id === 'ospq_dd' || e.data.event_id === 'ospq_confirmed') { 
+		   document.getElementById('online-booking').setAttribute("src", e.data.page);    
+	    }	 
+			
+	    if (e.data.event_id === 'scroll_top_of_el' || e.data.event_id === 'scroll_bottom_of_el') { 			 
+			var bookingTop = document.getElementById("online-booking-wrapp").offsetTop;
+			document.getElementById("online-booking-wrapp").height = e.data.height;
+			window.scrollTo(0, bookingTop + e.data.position);
+        } 	
+			
+	    if (e.data.event_id === 'set_height') {
+			document.getElementById("online-booking").height = e.data.height;				
+        } 			
+    };
+		
+	(function () {
+		var queryParams = document.location.search.split('?')[1];
+		var url = 'https://demosite.service123.co.uk?iframe-v2=true';		
+		var formatedParam = '';
+		var bookingWrapp = document.getElementById('online-booking-wrapp');
+
+		if (queryParams && queryParams.indexOf('Amend')!=-1) {
+			formatedParam = queryParams.replace('=', '/');
+			url += formatedParam;			 
+		}
+		
+		bookingWrapp.innerHTML = '<iframe frameborder="0" id="online-booking" src="' + url + '"  style="width:100%;"></iframe>'
+	})();
+		
+	document.getElementById("online-booking").height = window.innerHeight; 	
+		
+	</script>
+	
+</body>
+</html>
