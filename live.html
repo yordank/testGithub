@@ -32,7 +32,15 @@
 		   document.getElementById('online-booking').setAttribute("src", e.data.page);    
 	    }	 
 			
-	    if (e.data.event_id === 'scroll_top_of_el' || e.data.event_id === 'scroll_bottom_of_el') { 			 
+	    if (e.data.event_id === 'scroll_top_of_el' || e.data.event_id === 'scroll_bottom_of_el') { 		
+		    gtag('event', 'workflowevent', {
+'Flow :: workflow name': tgb_ttc_booking, 
+'Flow :: workflow step number': 1, 
+'Flow :: conversion flag': 0, 
+'Content :: component name': tgb_ttc_booking
+}
+);
+
 			var bookingTop = document.getElementById("online-booking-wrapp").offsetTop;
 			document.getElementById("online-booking-wrapp").height = e.data.height;
 			window.scrollTo(0, bookingTop + e.data.position);
