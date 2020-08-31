@@ -15,42 +15,42 @@ At Research Garage Group we offer a range of servicing and maintenance options f
 We use genuine parts. Which ensures high-quality standards, first-time fit, nationwide parts and labour warranty. All oil supplied is of the very highest quality, latest technology and correct technical specification for your vehicle.
 
 Priding ourselves on our honesty, reliability and outstanding value for money, we bring impressive levels of technical support and our knowledge and understanding of your vehicle, letting Research Garage Group support you in whatever way we can.
-	<script>
-		
-	 window.onmessage = function(e){
-            if (e.data.event_id === 'ob_confirmed' || e.data.event_id === 'ospq_dd' || e.data.event_id === 'ospq_confirmed') { 
-		        document.getElementById('online-booking').setAttribute("src", e.data.page);
-	    
-	       //var bookingWrapp = document.getElementById('online-booking-wrapp');
-	       //bookingWrapp.innerHTML = '<object id="online-booking" data="' + e.data.page + '"  style="width:100%; height:99vh"></object>'
-            }	 
-			
-			if (e.data.event_id === 'scroll_top_of_el' || e.data.event_id === 'scroll_bottom_of_el') { 			 
-			console.log("scroll_top_of_el");
-		        var bookingTop = document.getElementById("online-booking-wrapp").offsetTop;
-			document.getElementById("online-booking-wrapp").height = e.data.height;
-			window.scrollTo(0, bookingTop + e.data.position);
-            } 	
-			
-			if (e.data.event_id === 'set_height') { 
-				console.log("sеt_height");
-		        var bookingTop = document.getElementById("online-booking-wrapp").offsetTop;
-				document.getElementById("online-booking").height = e.data.height;				
-            } 
-			
-        };
-		
-	</script>
+	
 	 
 	<div id="online-booking-wrapp">
 	</div>	 
 
-	<script>
-				
+		<script>
+	
+	var url = 'https://demosite.devservice123.com';	
+	
+	document.head.innerHTML += '<meta name = "viewport" content = "user-scalable=no, width=device-width">';
+	document.head.innerHTML += '<meta http-equiv="X-UA-Compatible" content="IE=9,10,11" />';
+		
+	window.onmessage = function(e){
+        if (e.data.event_id === 'ob_confirmed' || e.data.event_id === 'ospq_dd' || e.data.event_id === 'ospq_confirmed') { 
+		   document.getElementById('online-booking').setAttribute("src", e.data.page);    
+	    }	 
+			
+	    if (e.data.event_id === 'scroll_top_of_el' || e.data.event_id === 'scroll_bottom_of_el') { 			 
+			var bookingTop = document.getElementById("online-booking-wrapp").offsetTop;
+			document.getElementById("online-booking-wrapp").height = e.data.height;
+			window.scrollTo(0, bookingTop + e.data.position);
+        } 	
+			
+	    if (e.data.event_id === 'set_height') {
+			document.getElementById("online-booking").height = e.data.height;				
+        } 			
+    };
+	
+
+	function sendMessage(){
+		var iframeWin = document.getElementById("online-booking").contentWindow;
+		iframeWin.postMessage(window.location.href, url);        
+	}		
+	
 	(function () {
-		var queryParams = document.location.search.split('?')[1];
-		var url = 'https://demosite.edynamix-global.com/serviceplan/quote?iframe-v2=true';
-		//var url = 'https://www.researchgarage.co.uk/service/';
+		var queryParams = document.location.search.split('?')[1];		
 		var formatedParam = '';
 		var bookingWrapp = document.getElementById('online-booking-wrapp');
 
@@ -58,12 +58,15 @@ Priding ourselves on our honesty, reliability and outstanding value for money, w
 			formatedParam = queryParams.replace('=', '/');
 			url += formatedParam;			 
 		}
-
-		//bookingWrapp.innerHTML = '<object id="online-booking" data="' + url + '"  style="width:100%; height:99vh"></object>'
-		bookingWrapp.innerHTML = '<iframe frameborder="0" id="online-booking" src="' + url + '"  style="width:100%;"></iframe>'
-			})();
-	  
+		url += "?iframe-v2=true";
+		bookingWrapp.innerHTML = '<iframe frameborder="0" onload="sendMessage()" id="online-booking" src="' + url + '"  style="width:100%;"></iframe>';
+		
+	})();
+	
+	document.getElementById("online-booking").height = window.innerHeight;	
+		
 	</script>
+	
 	<div>
 		Servicing to Suit You At Research Garage Group we offer a range of servicing and maintenance options to help you keep your car in the best possible condition. Our lengthy past experience has taught us how best to serve our customers, and how to deliver real quality to you at affordable prices. We use genuine parts, which ensures high quality standards, first time fit and nationwide parts and labour warranty. All oil supplied is of the very highest quality, latest technology and correct technical specification for your vehicle. Priding ourselves on our honesty, reliability and outstanding value for money, we bring impressive levels of technical support and our knowledge and understanding of your vehicle, letting Research Garage Group support you in whatever way we can.
 	</div>
