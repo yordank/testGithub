@@ -32,7 +32,10 @@ Priding ourselves on our honesty, reliability and outstanding value for money, w
 	<div id="online-booking-wrapp">
 	</div>	 
 
-	<script>
+	 	<script>
+	
+	var url = 'https://demoivhcuk.devservice123.com';	
+	
 	document.head.innerHTML += '<meta name = "viewport" content = "user-scalable=no, width=device-width">';
 	document.head.innerHTML += '<meta http-equiv="X-UA-Compatible" content="IE=9,10,11" />';
 		
@@ -41,16 +44,7 @@ Priding ourselves on our honesty, reliability and outstanding value for money, w
 		   document.getElementById('online-booking').setAttribute("src", e.data.page);    
 	    }	 
 			
-	    if (e.data.event_id === 'scroll_top_of_el' || e.data.event_id === 'scroll_bottom_of_el') { 	
-		    
-gtag('event', 'workflowevent', {
-'Flow :: workflow name': 'tgb_ttc_booking', 
-'Flow :: workflow step number': 1, 
-'Flow :: conversion flag': 0, 
-'Content :: component name': 'tgb_ttc_booking'
-}
-);
-
+	    if (e.data.event_id === 'scroll_top_of_el' || e.data.event_id === 'scroll_bottom_of_el') { 			 
 			var bookingTop = document.getElementById("online-booking-wrapp").offsetTop;
 			document.getElementById("online-booking-wrapp").height = e.data.height;
 			window.scrollTo(0, bookingTop + e.data.position);
@@ -60,10 +54,15 @@ gtag('event', 'workflowevent', {
 			document.getElementById("online-booking").height = e.data.height;				
         } 			
     };
-		
+	
+
+	function sendMessage(){
+		var iframeWin = document.getElementById("online-booking").contentWindow;
+		iframeWin.postMessage(window.location.href, url);        
+	}		
+	
 	(function () {
-		var queryParams = document.location.search.split('?')[1];
-		var url = 'https://demoivhcuk.service123.co.uk?iframe-v2=true';		
+		var queryParams = document.location.search.split('?')[1];		
 		var formatedParam = '';
 		var bookingWrapp = document.getElementById('online-booking-wrapp');
 
@@ -71,11 +70,12 @@ gtag('event', 'workflowevent', {
 			formatedParam = queryParams.replace('=', '/');
 			url += formatedParam;			 
 		}
+		url += "?iframe-v2=true";
+		bookingWrapp.innerHTML = '<iframe frameborder="0" onload="sendMessage()" id="online-booking" src="' + url + '"  style="width:100%;"></iframe>';
 		
-		bookingWrapp.innerHTML = '<iframe frameborder="0" id="online-booking" src="' + url + '"  style="width:100%;"></iframe>'
 	})();
-		
-	document.getElementById("online-booking").height = window.innerHeight; 	
+	
+	document.getElementById("online-booking").height = window.innerHeight;	
 		
 	</script>
 	<div>
