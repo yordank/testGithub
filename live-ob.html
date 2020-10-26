@@ -1,85 +1,41 @@
 <!DOCTYPE html>
 <html>
-<head>
-</head>
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138231894-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-138231894-1', {
-   'custom_map': {
-     'dimension8': 'Flow :: workflow name',
-     'dimension9': 'Flow :: workflow step number',
-'dimension11': 'Flow :: conversion flag',
-'dimension12': 'Content :: component name',
-'metric6': 'OSB :: service price'
-   }
-});
-</script>
 <body>	 
-		IFRAME NEW VERSION
-<br>
-Local Vehicle MOT & Servicing
-At Research Garage Group we offer a range of servicing and maintenance options from our Nuneaton and Hinckley service centres to help you keep your car in the best possible condition. Our lengthy past experience has taught us how best to serve our customers, and how to deliver real quality to you at affordable prices.
-
-We use genuine parts. Which ensures high-quality standards, first-time fit, nationwide parts and labour warranty. All oil supplied is of the very highest quality, latest technology and correct technical specification for your vehicle.
-
-Priding ourselves on our honesty, reliability and outstanding value for money, we bring impressive levels of technical support and our knowledge and understanding of your vehicle, letting Research Garage Group support you in whatever way we can.
-	
 	<div id="online-booking-wrapp">
 	</div>	 
+	<script>
+		var url = 'https://demosite.service123.co.uk';
 
-	 	<script>
-	
-	var url = 'https://demoivhcuk.devservice123.com';	
-	
-	document.head.innerHTML += '<meta name = "viewport" content = "user-scalable=no, width=device-width">';
-	document.head.innerHTML += '<meta http-equiv="X-UA-Compatible" content="IE=9,10,11" />';
+		document.head.innerHTML += '<meta name = "viewport" content = "user-scalable=no, width=device-width">';
+		document.head.innerHTML += '<meta http-equiv="X-UA-Compatible" content="IE=9,10,11" />';
 		
 	window.onmessage = function(e){
-        if (e.data.event_id === 'ob_confirmed' || e.data.event_id === 'ospq_dd' || e.data.event_id === 'ospq_confirmed') { 
+            if (e.data.event_id === 'ob_confirmed' || e.data.event_id === 'ospq_dd' || e.data.event_id === 'ospq_confirmed') { 
 		   document.getElementById('online-booking').setAttribute("src", e.data.page);    
-	    }	 
-			
-	    if (e.data.event_id === 'scroll_top_of_el' || e.data.event_id === 'scroll_bottom_of_el') { 			 
-			var bookingTop = document.getElementById("online-booking-wrapp").offsetTop;
-			document.getElementById("online-booking-wrapp").height = e.data.height;
-			window.scrollTo(0, bookingTop + e.data.position);
-        } 	
-			
-	    if (e.data.event_id === 'set_height') {
-			document.getElementById("online-booking").height = e.data.height;				
-        } 			
-    };
-	
+	      }	 
+      };
 
 	function sendMessage(){
 		var iframeWin = document.getElementById("online-booking").contentWindow;
 		iframeWin.postMessage(window.location.href, url);        
-	}		
-	
+	}
+		
 	(function () {
-		var queryParams = document.location.search.split('?')[1];		
+		var queryParams = document.location.search.split('?')[1];
+				
 		var formatedParam = '';
 		var bookingWrapp = document.getElementById('online-booking-wrapp');
 
-		if (queryParams && queryParams.indexOf('Amend')!=-1) {
+		if (queryParams && (queryParams.indexOf('Amend')!=-1 || queryParams.indexOf('Edit')!=-1)) {
 			formatedParam = queryParams.replace('=', '/');
 			url += formatedParam;			 
 		}
+
 		url += "?iframe-v2=true";
-		bookingWrapp.innerHTML = '<iframe frameborder="0" onload="sendMessage()" id="online-booking" src="' + url + '"  style="width:100%;"></iframe>';
-		
+		bookingWrapp.innerHTML = '<iframe frameborder="0" onload="sendMessage()" id="online-booking" src="' + url + '"  style="width:100%;"></iframe>'
 	})();
-	
-	document.getElementById("online-booking").height = window.innerHeight;	
 		
+		document.getElementById("online-booking").height = window.innerHeight; 	
 	</script>
-	<div>
-		Servicing to Suit You At Research Garage Group we offer a range of servicing and maintenance options to help you keep your car in the best possible condition. Our lengthy past experience has taught us how best to serve our customers, and how to deliver real quality to you at affordable prices. We use genuine parts, which ensures high quality standards, first time fit and nationwide parts and labour warranty. All oil supplied is of the very highest quality, latest technology and correct technical specification for your vehicle. Priding ourselves on our honesty, reliability and outstanding value for money, we bring impressive levels of technical support and our knowledge and understanding of your vehicle, letting Research Garage Group support you in whatever way we can.
-	</div>
 </body>
 </html>
