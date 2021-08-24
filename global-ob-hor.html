@@ -56,9 +56,9 @@ Priding ourselves on our honesty, reliability and outstanding value for money, w
 		
 	window.onmessage = function(e){
         if (e.data.event_id === 'ob_confirmed' || e.data.event_id === 'ospq_dd' || e.data.event_id === 'ospq_confirmed') { 
-		   //var bookingTop = document.getElementById("online-booking-wrapp").offsetTop;
+		   var bookingTopOffset = document.getElementById("online-booking-wrapp").offsetTop;
 		   //document.getElementById("online-booking-wrapp").height = e.data.height;
-		   //window.scrollTo(0, bookingTop + e.data.position);
+		   window.scrollTo(0, bookingTopOffset);
 		   document.getElementById('online-booking').setAttribute("src", e.data.page);    
 	    }	 
 			
