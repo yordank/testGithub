@@ -1,17 +1,46 @@
 <!DOCTYPE html>
 <html>
 <body>	 
-	Test Iframe
+	IFRAME Local Vehicle MOT & Servicing At Research Garage Group we offer a range of servicing and maintenance options from our
+	Nuneaton and Hinckley service centres to help you keep your car in the best possible condition. Our lengthy past experience has 
+	taught us how best to serve our customers, and how to deliver real quality to you at affordable prices. We use genuine parts. 
+	Which ensures high-quality standards, first-time fit, nationwide parts and labour warranty. All oil supplied is of the very highest quality,
+	latest technology and correct technical specification for your vehicle. Priding ourselves on our honesty, reliability and outstanding value for money,
+	we bring impressive levels of technical support and our knowledge and understanding of your vehicle, letting Research Garage Group support you in whatever way we can.
+	IFRAME Local Vehicle MOT & Servicing At Research Garage Group we offer a range of servicing and maintenance options from our 
+	and Hinckley service centres to help you keep your car in the best possible condition. Our lengthy past experience has taught us how best to serve our customers,
+	and how to deliver real quality to you at affordable prices. We use genuine parts. Which ensures high-quality standards, first-time fit, nationwide parts 
+	and labour warranty. All oil supplied is of the very highest quality, latest technology and correct technical specification for your vehicle.
+	Priding ourselves on our honesty, reliability and outstanding value for money, we bring impressive levels of technical support and our knowledge 
+	and understanding of your vehicle, letting Research Garage Group support you in whatever way we can. IFRAME Local Vehicle MOT & Servicing 
+	At Research Garage Group we offer a range of servicing and maintenance options from our Nuneaton and Hinckley service centres to help you keep your 
+	car in the best possible condition. Our lengthy past experience has taught us how best to serve our customers,
+	and how to deliver real quality to you at affordable prices. We use genuine parts. Which ensures high-quality 
+	standards, first-time fit, nationwide parts and labour warranty. All oil supplied is of the very highest quality,
+	latest technology and correct technical specification for your vehicle. Priding ourselves on our honesty,
+	reliability and outstanding value for money, we bring impressive levels of technical support and our knowledge and understanding of your vehicle, 
+	letting Research Garage Group support you in whatever way we can. IFRAME Local Vehicle MOT & Servicing At Research Garage Group we offer a range 
+	of servicing and maintenance options from our Nuneaton and Hinckley service centres to help you keep your car in the best possible condition. 
+	Our lengthy past experience has taught us how best to serve our customers, and how to deliver real quality to you at affordable prices. 
+	We use genuine parts. Which ensures high-quality standards, first-time fit, nationwide parts and labour warranty. 
+	All oil supplied is of the very highest quality, latest technology and correct technical specification for your vehicle. 
+	Priding ourselves on our honesty, reliability and outstanding value for money, we bring impressive levels of technical support and our knowledge and understanding 
+	of your vehicle, letting Research Garage Group support you in whatever way we can.
 	<div id="online-booking-wrapp">
 	</div>	 
 	<script>
-		var url = 'https://prestigecars.devservice123.com/';
+		var url = 'prestigecars.devservice123.com';
 
 		document.head.innerHTML += '<meta name = "viewport" content = "user-scalable=no, width=device-width">';
 		document.head.innerHTML += '<meta http-equiv="X-UA-Compatible" content="IE=9,10,11" />';
 		
 	window.onmessage = function(e){
             if (e.data.event_id === 'ob_confirmed' || e.data.event_id === 'ospq_dd' || e.data.event_id === 'ospq_confirmed') { 
+			if (e.data.event_id === 'ob_confirmed'){
+                 var bookingTopOffset = document.getElementById("online-booking-wrapp").offsetTop;
+                 window.scrollTo(0, bookingTopOffset);
+            }
+
 		   document.getElementById('online-booking').setAttribute("src", e.data.page);    
 	      }	 
       };
@@ -32,7 +61,7 @@
 			url += formatedParam;			 
 		}
 
-		url += "&iframe-v2=true";
+		url += "?iframe-v2=true";
 		bookingWrapp.innerHTML = '<iframe frameborder="0" onload="sendMessage()" id="online-booking" src="' + url + '"  style="width:100%;"></iframe>'
 	})();
 		
