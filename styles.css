@@ -65,6 +65,7 @@ body {
     }
 
 .button-text {
+    white-space: nowrap;
     background-color: #FFCB05;
 }
 
