@@ -4,16 +4,29 @@
 	test 21mil
 	<div id="online-booking-wrapp">
 	</div>	 
+	
+	<div id="online-booking-wrapp">
+	</div>	 
 	<script>
-		var url = 'https://demosite.devservice123.com/ServicePlan/Quote';
+		var url = 'https://kiamotorsuk.service123.co.uk/?dealer=1132';
 
 		document.head.innerHTML += '<meta name = "viewport" content = "user-scalable=no, width=device-width">';
 		document.head.innerHTML += '<meta http-equiv="X-UA-Compatible" content="IE=9,10,11" />';
 		
 	window.onmessage = function(e){
             if (e.data.event_id === 'ob_confirmed' || e.data.event_id === 'ospq_dd' || e.data.event_id === 'ospq_confirmed') { 
+			if (e.data.event_id === 'ob_confirmed'){
+                 var bookingTopOffset = document.getElementById("online-booking-wrapp").offsetTop;
+                 window.scrollTo(0, bookingTopOffset);
+            }
+
 		   document.getElementById('online-booking').setAttribute("src", e.data.page);    
-	      }	 
+	      }
+
+		  if (e.data.event_id === 'scroll_top_of_el' || e.data.event_id === 'scroll_bottom_of_el') {
+			var bookingTop = document.getElementById("online-booking-wrapp").offsetTop;
+			window.scrollTo(0, bookingTop + e.data.position);
+			}
       };
 
 	function sendMessage(){
@@ -32,11 +45,12 @@
 			url += formatedParam;			 
 		}
 
-		url += "?iframe-v2=true";
-		bookingWrapp.innerHTML = '<iframe frameborder="0" onload="sendMessage()" id="online-booking" src="' + url + '"  style="width:100%;"></iframe>'
+		url += "&iframe-v2=true";
+		bookingWrapp.innerHTML = '<iframe frameborder="0" onload="sendMessage()" id="online-booking" src="' + url + '" referrerpolicy="no-referrer-when-downgrade" style="width:100%;"></iframe>'
 	})();
 		
 		document.getElementById("online-booking").height = window.innerHeight; 	
 	</script>
+
 </body>
 </html>
