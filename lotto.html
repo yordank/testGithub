@@ -35,7 +35,7 @@
   <div id="output"></div>
 
   <script>
-    function drawLottoNumbers(blockHash, totalNumbers = 49, drawCount = 6) {
+    function drawLottoNumbers(blockHash, totalNumbers = 35, drawCount = 5) {
       const numbers = new Set();
       const hashBytes = blockHash.match(/.{1,2}/g); // разделя хеша на байтове (2 символа)
 
