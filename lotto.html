@@ -28,13 +28,14 @@
 <body>
   <h1>Тото 5/35 с биткойн хеш 🎲</h1>
   <p>Въведи хеш на биткойн блок:</p>
+  <p>например 0000000000000000000103fda86227398cf709158d2c4f5c80deccde95df070d</p>p
   <input type="text" id="hashInput" placeholder="напр. 0000000000abcdef..." />
   <br>
   <button onclick="generateLotto()">Изтегли числа</button>
 
   <div id="output"></div>
 
-  Реален хеш може да вземеш от <a href="https://mempool.space/">https://mempool.space/</a>
+  <p>Реален хеш може да вземеш от <a href="https://mempool.space/">https://mempool.space/</a></p>
   <script>
     function drawLottoNumbers(blockHash, totalNumbers = 35, drawCount = 5) {
       const numbers = new Set();
