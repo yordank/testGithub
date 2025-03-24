@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8">
+  <title>Тото с Биткойн Хеш</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      max-width: 600px;
+      margin: 50px auto;
+      text-align: center;
+    }
+    input, button {
+      font-size: 1rem;
+      padding: 10px;
+      margin-top: 10px;
+      width: 80%;
+      max-width: 400px;
+    }
+    #output {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #006400;
+    }
+    #hashInput {
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <h1>Тото с Биткойн Хеш 🎯</h1>
+  <p>Последен блок хеш:</p>
+  <input type="text" id="hashInput" readonly />
+  <br>
+  <button onclick="generateLotto()">Изтегли числа</button>
+
+  <div id="output"></div>
+
+  <script>
+    async function fetchLatestBlockHash() {
+      try {
+        const res = await fetch("https://blockchain.info/latestblock?cors=true");
+        const data = await res.json();
+        const blockHash = data.hash;
+        document.getElementById('hashInput').value = blockHash;
+      } catch (error) {
+        console.error("Грешка при зареждане на хеша:", error);
+        document.getElementById('hashInput').value = "Грешка при зареждане";
+      }
+    }
+
+    function drawLottoNumbers(blockHash, totalNumbers = 49, drawCount = 6) {
+      const numbers = new Set();
+      const hashBytes = blockHash.match(/.{1,2}/g);
+
+      let i = 0;
+      while (numbers.size < drawCount && i < hashBytes.length) {
+        const byte = parseInt(hashBytes[i], 16);
+        const num = (byte % totalNumbers) + 1;
+        numbers.add(num);
+        i++;
+      }
+
+      let fallbackIndex = 0;
+      while (numbers.size < drawCount) {
+        const fallbackByte = parseInt(blockHash.slice(fallbackIndex, fallbackIndex + 2), 16);
+        const num = (fallbackByte % totalNumbers) + 1;
+        numbers.add(num);
+        fallbackIndex = (fallbackIndex + 2) % blockHash.length;
+      }
+
+      return Array.from(numbers).sort((a, b) => a - b);
+    }
+
+    function generateLotto() {
+      const input = document.getElementById('hashInput').value.trim();
+      const output = document.getElementById('output');
+
+      if (!/^[0-9a-fA-F]{64}$/.test(input)) {
+        output.innerText = "Невалиден хеш.";
+        output.style.color = "darkred";
+        return;
+      }
+
+      const result = drawLottoNumbers(input);
+      output.innerText = "Изтеглени числа: " + result.join(", ");
+      output.style.color = "#006400";
+    }
+
+    // Автоматично зарежда последния хеш при отваряне на страницата
+    fetchLatestBlockHash();
+  </script>
+</body>
+</html>
