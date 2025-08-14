@@ -22,7 +22,7 @@ function openBooking() {
   // Приемане на съобщения от child (cross-origin safe)
   window.addEventListener("message", (event) => {
     // Филтрираме по домейн за сигурност
-    if (event.origin !== "https://lindop.devservice123.com/") return;
+    if (event.origin !== "https://lindop.devservice123.com") return;
 
     if (event.data?.type === "bookingStatus") {
       clearInterval(checkTimer);
