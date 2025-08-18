@@ -3,7 +3,7 @@
 <body>	 
 	<script>
 function openBooking() {
-  const bookingUrl = "https://lindop.devservice123.com/"; 
+  const bookingUrl = "https://genesis.devservice123.com/"; 
   const bookingWin = window.open(bookingUrl, "bookingWindow", "width=900,height=700");
 
   if (!bookingWin) {
@@ -22,7 +22,7 @@ function openBooking() {
   // Приемане на съобщения от child (cross-origin safe)
   window.addEventListener("message", (event) => {
     // Филтрираме по домейн за сигурност
-    if (event.origin !== "https://lindop.devservice123.com") return;
+    if (event.origin !== "https://genesis.devservice123.com") return;
 
     if (event.data?.type === "bookingStatus") {
       clearInterval(checkTimer);
