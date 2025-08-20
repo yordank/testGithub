@@ -3,34 +3,20 @@
 <body>	 
 	<script>
 function openBooking() {
-  const bookingUrl = "https://genesis-cp.edynamix-uat.com/"; 
-  const bookingWin = window.open(bookingUrl, "bookingWindow", "width=900,height=700");
+  
+  const child = window.open('https://genesis-cp.edynamix-uat.com/', 'booking');
 
-  if (!bookingWin) {
-    alert("Please allow popups for this site.");
-    return;
+
+
+
+ 
+  };
+ window.addEventListener('message', (e) => {
+  if (e.data?.type === 'bookingStatus') {
+    console.log('Status:', e.data.status); // confirmed | failed | midway-closed
   }
+});
 
-  // Таймер за проверка дали е затворено без статус
-  const checkTimer = setInterval(() => {
-    if (bookingWin.closed) {
-      clearInterval(checkTimer);
-      console.log("Booking closed midway (no confirmation received)");
-    }
-  }, 500);
-
-  // Приемане на съобщения от child (cross-origin safe)
-  window.addEventListener("message", (event) => {
-    // Филтрираме по домейн за сигурност
-    if (event.origin !== "https://genesis-cp.edynamix-uat.com") return;
-
-    if (event.data?.type === "bookingStatus") {
-      clearInterval(checkTimer);
-      console.log("Booking status from child:", event.data.status);
-      bookingWin.close();
-    }
-  });
-}
 </script>
 
 <button onclick="openBooking()">Book Maintenance</button>
