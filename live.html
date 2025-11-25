@@ -1,26 +1,41 @@
 <!DOCTYPE html>
 <html>
 <body>	 
+	<div id="online-booking-wrapp">
+	</div>	 
 	<script>
-function openBooking() {
-  
-  const child = window.open('https://genesis.service123.co.uk/', 'booking');
+		var url = 'https://demosite.service123.co.uk/';
 
+		document.head.innerHTML += '<meta name = "viewport" content = "user-scalable=no, width=device-width">';
+		document.head.innerHTML += '<meta http-equiv="X-UA-Compatible" content="IE=9,10,11" />';
+		
+	window.onmessage = function(e){
+            if (e.data.event_id === 'ob_confirmed' || e.data.event_id === 'ospq_dd' || e.data.event_id === 'ospq_confirmed') { 
+		   document.getElementById('online-booking').setAttribute("src", e.data.page);    
+	      }	 
+      };
 
+	function sendMessage(){
+		var iframeWin = document.getElementById("online-booking").contentWindow;
+		iframeWin.postMessage(window.location.href, url);        
+	}
+		
+	(function () {
+		var queryParams = document.location.search.split('?')[1];
+				
+		var formatedParam = '';
+		var bookingWrapp = document.getElementById('online-booking-wrapp');
 
+		if (queryParams && (queryParams.indexOf('Amend')!=-1 || queryParams.indexOf('Edit')!=-1)) {
+			formatedParam = queryParams.replace('=', '/');
+			url += formatedParam;			 
+		}
 
- 
-  };
- window.addEventListener('message', (e) => {
-  if (e.data?.type === 'bookingStatus') {
-    console.log('Status:', e.data.status); // confirmed | failed | midway-closed
-  }
-});
-
-</script>
-
-<button onclick="openBooking()">Book Maintenance</button>
-
-
+		url += "?iframe-v2=true";
+		bookingWrapp.innerHTML = '<iframe frameborder="0" onload="sendMessage()" id="online-booking" src="' + url + '"  style="width:100%;"></iframe>'
+	})();
+		
+		document.getElementById("online-booking").height = window.innerHeight; 	
+	</script>
 </body>
 </html>
